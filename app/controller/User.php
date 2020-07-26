@@ -1,7 +1,7 @@
 <?php
-class Dashboard extends Controller
+class User extends Controller
 {
-    private $title = "Dashboard | deLego";
+    private $title = "User | deLego";
 
     public function __construct()
     {
@@ -13,13 +13,13 @@ class Dashboard extends Controller
             header('location: ../login');
             exit();
         }
+        $this->view->title = $this->title;
     }
 
     public function indexAction()
     {
         $this->model->getOrder();
-        $this->view->title = $this->title;
-        $this->view->render('dashboard/index');
+        $this->view->render('User/index');
     }
 
     public function logoutAction()
@@ -29,7 +29,8 @@ class Dashboard extends Controller
         exit();
     }
 
-    public function gorderAction()
+    public function cartAction()
     {
+        $this->view->render('User/cart');
     }
 }

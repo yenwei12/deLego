@@ -1,10 +1,6 @@
 <?php
 class RegisterModel extends Model
 {
-    public function __construct()
-    {
-    }
-
     public function run()
     {
         $email = $_POST["email"];

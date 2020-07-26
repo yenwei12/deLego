@@ -14,63 +14,63 @@
                 <label>User Id</label>
             </div>
             <div class="col-md-6">
-                <p><?php echo Session::get('userId') ?></p>
+                <input type="text" class="form-control-plaintext" readonly value=<?php echo Session::get('userId') ?>>
             </div>
         </div>
         <div class="row py-2">
             <div class="col-md-6">
-                <label>Name</label>
+                <label for="name">Name</label>
             </div>
             <div class="col-md-6">
-                <input type="text" name="fullName" class="form-control" placeholder="Name" value=<?php echo Session::get('userFullName') ?>>
-            </div>
-        </div>
-        <div class="row py-2">
-            <div class="col-md-6">
-                <label>Email</label>
-            </div>
-            <div class="col-md-6">
-                <input type="email" name="email" class="form-control" placeholder="Email" value=<?php echo Session::get('userEmail') ?>>
+                <input id="name" type="text" name="fullName" class="form-control" placeholder="Name" value=<?php echo Session::get('userFullName') ?>>
             </div>
         </div>
         <div class="row py-2">
             <div class="col-md-6">
-                <label>Phone</label>
+                <label for="email">Email</label>
             </div>
             <div class="col-md-6">
-                <input type="tel" name="contactNo" class="form-control" placeholder="Phone number" value=<?php echo Session::get('userContactNo') ?>>
-            </div>
-        </div>
-        <div class="row py-2">
-            <div class="col-md-6">
-                <label>Address</label>
-            </div>
-            <div class="col-md-6">
-                <input type="text" name="address" class="form-control" placeholder="Address" value=<?php echo Session::get('userAddress') ?>>
+                <input id="email" type="email" name="email" class="form-control" placeholder="Email" value=<?php echo Session::get('userEmail') ?>>
             </div>
         </div>
         <div class="row py-2">
             <div class="col-md-6">
-                <label>City</label>
+                <label for="phone">Phone</label>
             </div>
             <div class="col-md-6">
-                <input type="text" name="city" class="form-control" placeholder="City" value=<?php echo Session::get('userCity') ?>>
-            </div>
-        </div>
-        <div class="row py-2">
-            <div class="col-md-6">
-                <label>State</label>
-            </div>
-            <div class="col-md-6">
-                <input type="text" name="state" class="form-control" placeholder="State" value=<?php echo Session::get('userState') ?>>
+                <input id="phone" type="tel" name="contactNo" class="form-control" placeholder="Phone number" value=<?php echo Session::get('userContactNo') ?>>
             </div>
         </div>
         <div class="row py-2">
             <div class="col-md-6">
-                <label>Country</label>
+                <label for="address">Address</label>
             </div>
             <div class="col-md-6">
-                <select name="country" class="form-control">
+                <input id="address" type="text" name="address" class="form-control" placeholder="Address" value=<?php echo Session::get('userAddress') ?>>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label for="city">City</label>
+            </div>
+            <div class="col-md-6">
+                <input id="city" type="text" name="city" class="form-control" placeholder="City" value=<?php echo Session::get('userCity') ?>>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label for="state">State</label>
+            </div>
+            <div class="col-md-6">
+                <input id="state" type="text" name="state" class="form-control" placeholder="State" value=<?php echo Session::get('userState') ?>>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label for="country">Country</label>
+            </div>
+            <div class="col-md-6">
+                <select id="country" name="country" class="form-control">
                     <option value="malaysia">Malaysia</option>
                 </select>
                 <p><?php echo Session::get('userCountry') ?></p>

@@ -7,7 +7,7 @@ class Bootstrap
         $url = parse_url($_SERVER['REQUEST_URI']);
         $paths = explode('/', rtrim($url['path'], '/'));
 
-/*         echo '<pre>';
+        /*         echo '<pre>';
         print_r($url);
         print_r($paths);
         echo '</pre>'; */

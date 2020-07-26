@@ -7,7 +7,8 @@ class Controller
         $this->view = new View();
     }
 
-    public function loadModel($className) {
+    public function loadModel($className)
+    {
         $modelName = $className . 'Model';
         $path = '../app/model/' . $modelName . '.php';
 

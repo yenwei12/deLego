@@ -1,10 +1,6 @@
 <?php
 class LoginModel extends Model
 {
-    public function __construct()
-    {
-    }
-
     public function run()
     {
         $username = $_POST['email'];
@@ -34,7 +30,11 @@ class LoginModel extends Model
             foreach ($results as $key => $val) {
                 Session::set($key, $val);
             }
-            header('location: /dashboard');
+            if (Session::get('userRole') == 'admin') {
+                header('location: /admin');
+            } else {
+                header('location: /user');
+            }
         } else {
             header('location: /login?error=invaliduser');
         }

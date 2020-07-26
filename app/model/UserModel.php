@@ -1,10 +1,6 @@
 <?php
-class DashboardModel extends Model
+class UserModel extends Model
 {
-    public function __construct()
-    {
-    }
-
     public function getOrder()
     {
         $id = Session::get('userId');
