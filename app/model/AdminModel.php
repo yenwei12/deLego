@@ -48,8 +48,33 @@ class AdminModel extends Model
             Session::set('product', $result);
         }
         return false;
-
     }
+
+    public function getOrder()
+    {
+        $sql = "SELECT
+                orderId,
+                orderAt,
+                orderStatus,
+                orderAmount
+            FROM orders
+            ORDER BY orderAt DESC";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([]);
+        $count = $stmt->rowCount();
+        if ($count > 0) {
+            Session::set('orders', $stmt->fetchAll());
+        }
+        return false;
+    }
+
+    public function updateOrder($id)
+    {
+        header('location: ../../admin/order?status=updatesuccess&id=' . $id);
+        return true;
+    }
+
+
 
     public function add()
     {
@@ -87,5 +112,9 @@ class AdminModel extends Model
         } else {
             header('location: /admin/add?sku=' . $sku . '&productName=' . $name . '&price=' . $price . '&weight=' . '&longDesc=' . $longDesc . '&thumbnail=' . $thumbnail . '&images=' . $images . '&stock=' . $stock . '&category=' . $category);
         }
+    }
+
+    public function save() {
+        header(('location: /admin/view?status=editsuccess'));
     }
 }

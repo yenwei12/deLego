@@ -5,7 +5,7 @@
     $product = Session::get('product');
     ?>
 
-    <form action="addproduct" method="post">
+    <form action="../admin/editproduct" method="post">
         <div class="form-group">
             <label for="sku">Product SKU</label>
             <input required type="text" class="form-control" name="sku" id="sku" maxlength="11" value="<?php echo $product['productSKU'] ?>">
@@ -13,22 +13,22 @@
 
         <div class="form-group">
             <label for="productName">Product Name</label>
-            <input required type="text" class="form-control" name="productName" id="productName" maxlength="100" value="<?php echo $product['productName']?>">
+            <input required type="text" class="form-control" name="productName" id="productName" maxlength="100" value="<?php echo $product['productName'] ?>">
         </div>
 
         <div class="form-group">
             <label for="price">Product Price (RM)</label>
-            <input required type="number" class="form-control" name="price" id="price" value="<?php echo $product['productPrice']?>">
+            <input required type="number" class="form-control" name="price" id="price" value="<?php echo $product['productPrice'] ?>">
         </div>
 
         <div class="form-group">
             <label for="weight">Product Weight (KG)</label>
-            <input required type="text" class="form-control" name="weight" id="weight" value="<?php echo $product['productSKU']?>">
+            <input required type="text" class="form-control" name="weight" id="weight" value="<?php echo $product['productWeight'] ?>">
         </div>
 
         <div class="form-group">
-            <label for="longDesc">Long Description</label>
-            <textarea class="form-control" id="longDesc" name="longDesc" rows="3"><?php echo $product['productLongDesc']?></textarea>
+            <label for="longDesc">Description</label>
+            <textarea class="form-control" id="longDesc" name="longDesc" rows="3"><?php echo $product['productLongDesc'] ?></textarea>
         </div>
 
         <div class="form-group">
@@ -46,23 +46,35 @@
 
         <div class="form-group">
             <label for="stock">Product stock</label>
-            <input required type="number" class="form-control" name="stock" id="stock" value="<?php echo $product['productStock']?>">
+            <input required type="number" class="form-control" name="stock" id="stock" value="<?php echo $product['productStock'] ?>">
         </div>
 
         <div class="form-group">
             <label for="">Category</label>
-            <select class="form-control" name="category" id="category" value="<?php echo $product['productCategory']?>">
+            <select class="form-control" name="category" id="category" value="<?php echo $product['productCategory'] ?>">
                 <option>Building</option>
                 <option>Vehicle</option>
                 <option>Figurine</option>
             </select>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="login-btn">Save</button>
+        <div class="row float-right mx-auto">
+            <a href="#" onclick="confirmDelete()" class="btn btn-outline-danger mr-1" role="button" aria-disabled="true">Delete</a>
+            <button class="btn btn-primary float-right" type="submit" name="login-btn" style="width: 150px;">Save</button>
+        </div>
+
+
     </form>
 </div>
 
 <script>
+    function confirmDelete() {
+        var r = confirm('Are you sure you want to delete this item?');
+        if (r == true) {
+            window.alert("This item has been deleted");
+        }
+    }
+
     $(function() {
         // Multiple images preview in browser
         var imagesPreview = function(input, placeToInsertImagePreview) {

@@ -18,18 +18,21 @@ class Product extends Controller
     public function buildingAction()
     {
         $this->view->title = 'Building | deLego';
-        $this->view->render('Product/building');
+        $this->model->select('building');
+        $this->view->render('Product/index');
     }
 
     public function vehicleAction()
     {
         $this->view->title = 'Vehicle | deLego';
-        $this->view->render('Product/vehicle');
+        $this->model->select('vehicle');
+        $this->view->render('Product/index');
     }
 
     public function figurineAction()
     {
         $this->view->title = 'Figurine | deLego';
-        $this->view->render('Product/figurine');
+        $this->model->select('figurine');
+        $this->view->render('Product/index');
     }
 }

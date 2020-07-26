@@ -1,0 +1,42 @@
+<?php
+$products = Session::get('products');
+    echo '<pre>';
+    // print_r($products);
+    echo '</pre>';
+?>
+
+<br>
+<div class="container">
+
+    <?php
+    $index = 0;
+    foreach ($products as $product) {
+        if ($index == 0 || $index % 3 == 0) {
+            echo '<div class="row">';
+        }
+
+        $imgUrl = '../assets/images/' . $product['productCategory'] . '/' . $product['productSku'] . '/' . $product['productThumb'];
+        echo ' <div class="col-sm">';
+        echo '<div class="card" style="width: 18rem;">';
+        echo '<div class="card-header">' . $product['productName'] . '</div>';
+        echo '<img class="card-img-top" src="' . $imgUrl . '" alt="Products">';
+        echo '<div class="card-body">';
+        echo '<div class="d-flex justify-content-between">';
+        if (Session::get('userRole') == 'customer') {
+            echo '<a href="#" class="card-link">Add to cart</a>';
+        }
+        echo '<a href="#" class="card-link">See more</a>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+
+        if ($index + 1 % 3 == 0 || $index == sizeof($products)) {
+            echo '</div>';
+        }
+
+        $index++;
+    }
+    ?>
+</div>
+</div>

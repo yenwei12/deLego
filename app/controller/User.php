@@ -33,4 +33,15 @@ class User extends Controller
     {
         $this->view->render('User/cart');
     }
+
+    public function checkoutAction()
+    {
+        $this->view->render('User/checkout');
+    }
+
+    public function updateAction()
+    {
+        $this->model->update();
+    }
+
 }

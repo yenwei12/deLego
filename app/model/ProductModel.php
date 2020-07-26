@@ -1,26 +1,22 @@
 <?php
 class ProductModel extends Model
 {
-    public function select()
+    public function select($type='all')
     {
         $sql = "SELECT
-            productName,
-            productPrice,
-            productShortDesc,
-            productThumb,
-            productCategory
-            SUM(orderItem. orderItemQuantity) as totalUnitsSold FROM products
-            JOIN orderItems ON orderItems.productId=products.productId
-            GROUP BY orderItems.productId
+            *
+            -- SUM(orderItem. orderItemQuantity) as totalUnitsSold
+            FROM products
+            WHERE productCategory=?
+            /* JOIN orderItems ON orderItems.productId=products.productId
+            GROUP BY orderItems.productId */
             ORDER BY productName";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([]);
+        $stmt->execute([$type]);
         $count = $stmt->rowCount();
         if ($count > 0) {
             $results = $stmt->fetchAll();
-            echo '<pre>';
-            print_r($results);
-            echo '</pre>';
+            Session::set('products', $results);
         }
         return false;
     }

@@ -21,4 +21,9 @@ class UserModel extends Model
         }
         return false;
     }
+
+    public function update()
+    {
+        header('location: ../user?=status=updatesuccess');
+    }
 }

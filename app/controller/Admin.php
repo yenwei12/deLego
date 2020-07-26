@@ -52,10 +52,22 @@ class Admin extends Controller
 
     public function orderAction()
     {
+        $this->model->getOrder();
         $this->view->render('Admin/order');
     }
 
-    public function addProductAction() {
+    public function addProductAction()
+    {
         $this->model->add();
+    }
+
+    public function editProductAction()
+    {
+        $this->model->save();
+    }
+
+    public function updateOrderAction($id)
+    {
+        $this->model->updateOrder($id);
     }
 }

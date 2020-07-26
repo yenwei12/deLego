@@ -1,4 +1,14 @@
 <div class="container">
+    <br>
+    <?php
+    if (isset($_REQUEST['status'])) {
+        if ($_REQUEST['status'] == 'editsuccess') {
+            echo '<div class="alert alert-success" role="alert">';
+            echo 'Successfully edited';
+            echo '</div>';
+        }
+    }
+    ?>
     <table class="order-table table table-hover">
         <thead>
             <tr>
@@ -19,7 +29,7 @@
                     echo '<td>' . $product['productName'] . '</td>';
                     echo '<td>' . 'RM ' . number_format($product['productPrice'], 2) . '</td>';
                     // echo '<td>' . $product['productThumb'] . '</td>';
-                    echo '<td>' . $product['productCategory'] . '</td>';
+                    echo '<td>' . ucfirst($product['productCategory']) . '</td>';
                     echo '<td>' . $product['productStock'] . '</td>';
                     echo '<td>' . '<a href="../admin/edit/' . $product['productId'] . '">Edit</a></td>';
                     echo '</tr>';

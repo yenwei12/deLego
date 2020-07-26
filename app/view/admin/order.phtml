@@ -1,1 +1,51 @@
-<h1>Show all orders in table</h1>
+<div class="container">
+    <br>
+
+    <?php
+    if (isset($_REQUEST['status'])) {
+        if ($_REQUEST['status'] == 'updatesuccess') {
+            echo '<div class="alert alert-success" role="alert">';
+            echo 'Order #' . $_REQUEST['id'] . ' update successfully';
+            echo '</div>';
+        }
+    }
+    ?>
+
+    <table class="order-table table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Order #</th>
+                <th scope="col">Placed on</th>
+                <th scope="col">Total</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $orders = Session::get('orders');
+            if (isset($orders)) {
+                foreach ($orders as $order) {
+                    echo '<tr>';
+                    echo '<td>' . $order['orderId'] . '</td>';
+                    echo '<td>' . $order['orderAt'] . '</td>';
+                    echo '<td>' . 'RM ' . number_format($order['orderAmount'], 2) . '</td>';
+                    echo '<td>' . '<select class="form-control" name="category" id="category" value="echo">
+                <option>Processing</option>
+                <option>Shipping</option>
+                <option>Complete</option>
+                <option>Cancel</option>
+            </select>' . '</td>';
+                    echo '<td>' . '<a href="../admin/updateOrder/' . $order['orderId'] . '">Update</a></td>';
+                    echo '</tr>';
+                }
+            } else {
+                echo '<tr> <td> No orders </td> </tr>';
+            }
+            ?>
+        </tbody>
+    </table>
+    <div class="row">
+        
+    </div>
+</div>
