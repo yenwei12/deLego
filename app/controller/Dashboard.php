@@ -17,6 +17,7 @@ class Dashboard extends Controller
 
     public function indexAction()
     {
+        $this->model->getOrder();
         $this->view->title = $this->title;
         $this->view->render('dashboard/index');
     }
@@ -26,5 +27,9 @@ class Dashboard extends Controller
         Session::destroy();
         header('location: ../login');
         exit();
+    }
+
+    public function gorderAction()
+    {
     }
 }

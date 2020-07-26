@@ -1,9 +1,16 @@
-<?php if (isset($_REQUEST['error'])) {
+<?php
+if (isset($_REQUEST['error'])) {
     echo '<div class="alert alert-danger" role="alert">';
     if ($_REQUEST['error'] == 'invaliduser') {
         echo 'Incorrect email or password';
     }
     echo '</div>';
+} else if (isset($_REQUEST['signup'])) {
+    if ($_REQUEST['signup'] == 'success') {
+        echo '<div class="alert alert-success" role="alert">';
+        echo 'Sign up successfully';
+        echo '</div';
+    }
 }
 ?>
 

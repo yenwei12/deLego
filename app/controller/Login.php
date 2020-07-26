@@ -9,7 +9,8 @@ class Login extends Controller
         $this->view->render('login/index');
     }
 
-    public function runAction() {
+    public function runAction()
+    {
         $this->model->run();
     }
 }

@@ -1,1 +1,130 @@
-<h1>Dahsbaord you are login</h1>
+<div class="container">
+    <br>
+
+    <?php
+    echo '<h1>Hello, ';
+    echo Session::get('userFullName');
+    echo '</h1>';
+    ?>
+    <br>
+
+    <form action="database/run" method="post">
+        <div class="row input-field py-2">
+            <div class="col-md-6">
+                <label>User Id</label>
+            </div>
+            <div class="col-md-6">
+                <p><?php echo Session::get('userId') ?></p>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label>Name</label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="fullName" class="form-control" placeholder="Name" value=<?php echo Session::get('userFullName') ?>>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label>Email</label>
+            </div>
+            <div class="col-md-6">
+                <input type="email" name="email" class="form-control" placeholder="Email" value=<?php echo Session::get('userEmail') ?>>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label>Phone</label>
+            </div>
+            <div class="col-md-6">
+                <input type="tel" name="contactNo" class="form-control" placeholder="Phone number" value=<?php echo Session::get('userContactNo') ?>>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label>Address</label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="address" class="form-control" placeholder="Address" value=<?php echo Session::get('userAddress') ?>>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label>City</label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="city" class="form-control" placeholder="City" value=<?php echo Session::get('userCity') ?>>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label>State</label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="state" class="form-control" placeholder="State" value=<?php echo Session::get('userState') ?>>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label>Country</label>
+            </div>
+            <div class="col-md-6">
+                <select name="country" class="form-control">
+                    <option value="malaysia">Malaysia</option>
+                </select>
+                <p><?php echo Session::get('userCountry') ?></p>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label>Email Verified</label>
+            </div>
+            <div class="col-md-6">
+                <?php
+                if (Session::get('isEmailVerified')) {
+                    echo '<p> Verified <i class="fas fa-check" style="color: green"> </i></p>';
+                } else {
+                    echo '<p> Not verified ' . '(<a href="#">Send verification code</a>)' . '</p>';
+                }
+                ?>
+            </div>
+        </div>
+        <div class="text-right">
+            <button class="btn btn-primary" type="submit" name="save-btn">Save</button>
+        </div>
+    </form>
+    <br>
+    <div>
+        <!-- Show last 5 orders -->
+        <table class="order-table table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Order #</th>
+                    <th scope="col">Placed on</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $orders = Session::get('orders');
+                if (isset($orders)) {
+                    foreach ($orders as $order) {
+                        echo '<tr>';
+                        echo '<td>' . $order['orderId'] . '</td>';
+                        echo '<td>' . $order['orderAt'] . '</td>';
+                        echo '<td>' . ucfirst($order['orderStatus']) . '</td>';
+                        echo '<td>' . 'RM ' . number_format($order['orderAmount'], 2) . '</td>';
+                        echo '<td>' . '<a href="#">View</a>' . '</td>';
+                        echo '</tr>';
+                    }
+                } else {
+                    echo '<tr> <td> No orders </td> </tr>';
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
