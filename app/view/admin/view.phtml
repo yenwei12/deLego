@@ -1,1 +1,33 @@
-<h1>Show all products in table</h1>
+<div class="container">
+    <table class="order-table table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+                <!-- <th scope="col">Thumb</th> -->
+                <th scope="col">Category</th>
+                <th scope="col">Stock</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $products = Session::get('products');
+            if (isset($products)) {
+                foreach ($products as $product) {
+                    echo '<tr>';
+                    echo '<td>' . $product['productName'] . '</td>';
+                    echo '<td>' . 'RM ' . number_format($product['productPrice'], 2) . '</td>';
+                    // echo '<td>' . $product['productThumb'] . '</td>';
+                    echo '<td>' . $product['productCategory'] . '</td>';
+                    echo '<td>' . $product['productStock'] . '</td>';
+                    echo '<td>' . '<a href="../admin/edit/' . $product['productId'] . '">Edit</a></td>';
+                    echo '</tr>';
+                }
+            } else {
+                echo '<tr> <td> No orders </td> </tr>';
+            }
+            ?>
+        </tbody>
+    </table>
+</div>

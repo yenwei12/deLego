@@ -26,11 +26,17 @@ class Bootstrap
 
                 if (isset($paths[2])) {
                     $actionName = $paths[2] . 'Action';
-                    if (method_exists($controller, $actionName)) {
-                        $controller->{$actionName}();
+
+                    if (isset($paths[3])) {
+                        $id = $paths[3];
+                        $controller->{$actionName}($id);
                     } else {
-                        // Default action
-                        header('location: ../' . $controllerName);
+                        if (method_exists($controller, $actionName)) {
+                            $controller->{$actionName}();
+                        } else {
+                            // Default action
+                            header('location: ../' . $controllerName);
+                        }
                     }
                 } else {
                     // Default action

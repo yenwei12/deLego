@@ -1,7 +1,7 @@
 <?php
 class ProductModel extends Model
 {
-    public function run()
+    public function select()
     {
         $sql = "SELECT
             productName,

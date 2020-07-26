@@ -7,10 +7,14 @@ class Admin extends Controller
     {
         parent::__construct();
         $logged = Session::get('loggedIn');
+        $userRole = Session::get('userRole');
 
         if ($logged == false) {
             Session::destroy();
             header('location: ../login');
+            exit();
+        } else if ($userRole != 'admin') {
+            header('location: ../error');
             exit();
         }
 
@@ -31,12 +35,13 @@ class Admin extends Controller
 
     public function viewAction()
     {
-        $this->model->run();
+        $this->model->viewAll();
         $this->view->render('Admin/view');
     }
 
-    public function editAction()
+    public function editAction($id = 0)
     {
+        $this->model->viewOne($id);
         $this->view->render('Admin/edit');
     }
 
@@ -48,5 +53,9 @@ class Admin extends Controller
     public function orderAction()
     {
         $this->view->render('Admin/order');
+    }
+
+    public function addProductAction() {
+        $this->model->add();
     }
 }

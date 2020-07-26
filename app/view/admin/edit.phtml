@@ -1,1 +1,102 @@
-<h1>Edit product</h1>
+<br>
+
+<div class="container">
+    <?php
+    $product = Session::get('product');
+    ?>
+
+    <form action="addproduct" method="post">
+        <div class="form-group">
+            <label for="sku">Product SKU</label>
+            <input required type="text" class="form-control" name="sku" id="sku" maxlength="11" value="<?php echo $product['productSKU'] ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input required type="text" class="form-control" name="productName" id="productName" maxlength="100" value="<?php echo $product['productName']?>">
+        </div>
+
+        <div class="form-group">
+            <label for="price">Product Price (RM)</label>
+            <input required type="number" class="form-control" name="price" id="price" value="<?php echo $product['productPrice']?>">
+        </div>
+
+        <div class="form-group">
+            <label for="weight">Product Weight (KG)</label>
+            <input required type="text" class="form-control" name="weight" id="weight" value="<?php echo $product['productSKU']?>">
+        </div>
+
+        <div class="form-group">
+            <label for="longDesc">Long Description</label>
+            <textarea class="form-control" id="longDesc" name="longDesc" rows="3"><?php echo $product['productLongDesc']?></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="thumbnail">Thumbnail</label>
+            <input required type="file" class="form-control-file" name="thumbnail" id="thumbnail">
+            <div id="thumbnailCtn"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="images">Images</label>
+            <input required type="file" class="form-control-file" name="images" id="images" multiple>
+            <div id="imageCtn">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="stock">Product stock</label>
+            <input required type="number" class="form-control" name="stock" id="stock" value="<?php echo $product['productStock']?>">
+        </div>
+
+        <div class="form-group">
+            <label for="">Category</label>
+            <select class="form-control" name="category" id="category" value="<?php echo $product['productCategory']?>">
+                <option>Building</option>
+                <option>Vehicle</option>
+                <option>Figurine</option>
+            </select>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="login-btn">Save</button>
+    </form>
+</div>
+
+<script>
+    $(function() {
+        // Multiple images preview in browser
+        var imagesPreview = function(input, placeToInsertImagePreview) {
+
+            if (input.files) {
+                var filesAmount = input.files.length;
+                $(placeToInsertImagePreview)
+                    .empty()
+                    .append('<br>');
+
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        $($.parseHTML('<img>'))
+                            .attr('src', event.target.result)
+                            .addClass('img-thumbnail')
+                            .width(200)
+                            .height(200)
+                            .appendTo(placeToInsertImagePreview);
+                    }
+
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+
+        };
+
+        $('#thumbnail').on('change', function() {
+            imagesPreview(this, '#thumbnailCtn');
+        });
+
+        $('#images').on('change', function() {
+            imagesPreview(this, '#imageCtn');
+        });
+    });
+</script>
