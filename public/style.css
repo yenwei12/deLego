@@ -19,11 +19,6 @@ body {
     outline: none;
 }
 
-/* .bg-black {
-    background: #000;
-} */
-/* End of Navbar */
-
 /* Slider */
 .carousel-item {
     height: 600px;
@@ -272,6 +267,7 @@ body {
 }
 
 .login-form {
+    background-color: blue;
     width: 300px;
     padding: 20px;
     position: absolute;

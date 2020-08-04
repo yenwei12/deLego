@@ -14,7 +14,7 @@ class Bootstrap
 
         // Dispatcher
         if (isset($paths[1]) && !empty($paths[1])) {
-            $controllerName = $paths[1];
+            $controllerName = $paths[1] . 'Controller';
             $controllerFile = '../app/controller/' . $controllerName . '.php';
 
             if (file_exists($controllerFile)) {
@@ -43,15 +43,11 @@ class Bootstrap
                     $controller->indexAction();
                 }
             } else {
-                require_once '../app/controller/' . 'Error404.php';
-                $controller = new Error404();
-                $controller->indexAction();
+                header('location: ../error');
             }
         } else {
             // Route to home page
-            require_once '../app/controller/Index.php';
-            $controller = new Index();
-            $controller->indexAction();
+            header('location: ../index');
         }
     }
 }
