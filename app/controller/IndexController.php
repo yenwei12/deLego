@@ -11,6 +11,8 @@ class IndexController extends Controller
 
     public function indexAction()
     {
+        $this->model->run();
+
         $this->view->render('index/index');
     }
 }

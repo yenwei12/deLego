@@ -22,24 +22,11 @@ body {
 /* Slider */
 .carousel-item {
     height: 600px;
+    background-color: #1d1d1d;
 }
 
-.carousel-image-1 {
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
-        url("assets/images/c1.jpg");
-    background-size: cover;
-}
-
-.carousel-image-2 {
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
-        url("assets/images/c2.jpg");
-    background-size: cover;
-}
-
-.carousel-image-3 {
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
-        url("assets/images/c3.jpg");
-    background-size: cover;
+.carousel-item img {
+    transform: translate(-10%, -20%);
 }
 
 .title-color {
@@ -104,11 +91,11 @@ body {
 
 /* Product */
 #products {
-    background: #000000;
+    /* background: #000000; */
 }
 
 .product-title {
-    color: #ffffff;
+    /* color: #ffffff; */
 }
 
 .single-item {
@@ -175,12 +162,13 @@ body {
 /* End of Product */
 
 /* About */
-.about-sec {
+#about-sec {
+    background-color: #1d1d1d;
     margin-top: 25px;
 }
 
 .text-color {
-    color: #000000;
+    color: #ffffff;
 }
 
 .company-img {

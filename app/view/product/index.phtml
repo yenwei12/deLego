@@ -15,16 +15,18 @@ echo '</pre>';
             echo '<div class="row">';
         }
 
-        $imgUrl = '../assets/images/' . $product['productCategory'] . '/' . $product['productSku'] . '/' . $product['productThumb'];
+        // $imgUrl = '../assets/images/' . $product['productCategory'] . '/' . $product['productSku'] . '/' . $product['productThumb'];
+        $imgUrl = '../assets/models/' . $product['productSku'] . '/' . 'thumbnail.png';
         echo ' <div class="col-sm">';
         echo '<div class="card" style="width: 18rem;">';
         echo '<div class="card-header">' . $product['productName'] . '</div>';
         echo '<img class="card-img-top" src="' . $imgUrl . '" alt="Products">';
         echo '<div class="card-body">';
         echo '<div class="d-flex justify-content-between">';
-        if (Session::get('userRole') == 'customer') {
+        /* if (Session::get('userRole') == 'customer') {
             echo '<a href="#" class="card-link">Add to cart</a>';
-        }
+        } */
+        echo '<a href="../user/cart" class="card-link">Add to cart</a>';
         echo '<a href="#" class="card-link">See more</a>';
         echo '</div>';
         echo '</div>';
