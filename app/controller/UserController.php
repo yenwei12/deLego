@@ -44,4 +44,9 @@ class UserController extends Controller
         $this->model->update();
     }
 
+    public function submitAction()
+    {
+        $this->model->submit();
+    }
+
 }

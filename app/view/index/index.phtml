@@ -11,7 +11,7 @@
                 <img src="assets/images/cover1.png" class="d-block w-100" alt="Slide 1">
 
                 <div class="carousel-caption d-none d-sm-block text-right mb-5">
-                    <h1 class="display-3 title-color">Fire Station</h1>
+                    <h1 class="display-3 title-color"><a href="../product/item/8">Fire Station</a></h1>
                     <p class="lead">A fire station is a structure or other area for storing firefighting apparatus such as fire engines and related vehicles, personal protective equipment, fire hoses and other specialized equipment. Fire stations frequently contain working and living space for the firefighters and support staff.</p>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <img src="assets/images/cover2.png" class="d-block w-100" alt="Slide 2">
 
                 <div class="carousel-caption d-none d-sm-block text-right mb-5">
-                    <h1 class="display-3 title-color">Iron Man</h1>
+                    <h1 class="display-3 title-color"><a href="../product/item/7">Iron Man</a></h1>
                     <p class="lead">Anthony Edward Stark is the son of wealthy industrialist and head of Stark Industries, Howard Stark, and Maria Stark. A boy genius, he enters MIT at the age of 15 to study engineering and later receives master's degrees in engineering and physics. After his parents are killed in a car accident, he inherits his father's company.</p>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <img src="assets/images/cover4.png" class="d-block w-100" alt="Slide 3">
 
                 <div class="carousel-caption d-none d-sm-block text-right mb-5">
-                    <h1 class="display-3 title-color">Fat Boy</h1>
+                    <h1 class="display-3 title-color"><a href="../product/item/4">Fat Boy</a></h1>
                     <p class="lead">The hero of road-commanding cruisers has arrived. Meet the Fat Boy® 30th Anniversary Limited Edition, a celebration of one of the most iconic motorcycles ever created by Harley-Davidson. Serialized badging commemorates the bike as 1 of only 2,500 in the world. Carve out a legend of your own.</p>
                 </div>
             </div>
@@ -66,7 +66,8 @@
                 echo '<div class="col-10 col-sm-8 col-lg-4 mx-auto my-3">';
                 echo '<div class="card single-item">';
                 echo '<div class="img-container">';
-                echo '<img src="assets/models/' . $product['productSku'] . '/thumbnail.png" alt="" class="card-img-top product-img">';
+                echo '<a href=../product/item/' . $product['productId'] . '>' . '<img src="assets/models/' . $product['productSku'] . '/thumbnail.png" alt="" class="card-img-top product-img">' . '</a>';
+                // echo '<img src="assets/models/' . $product['productSku'] . '/thumbnail.png" alt="" class="card-img-top product-img">';
                 echo '</div>';
                 echo '<div class="card-body">';
                 echo '<div class="card-text d-flex justify-content-between text-capitalize">';

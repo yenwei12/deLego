@@ -4,6 +4,7 @@ class IndexModel extends Model
     public function run()
     {
         $sql = "SELECT
+            productId,
             productSku,
             productName,
             productPrice

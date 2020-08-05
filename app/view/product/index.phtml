@@ -7,38 +7,45 @@ echo '</pre>';
 
 <br>
 <div class="container">
+    <div class="row row-cols-3">
+        <?php
+        foreach ($products as $product) {
+            $imgUrl = '../assets/models/' . $product['productSku'] . '/' . 'thumbnail.png';
+            echo ' <div class="col-10 col-sm-8 col-lg-4 mx-auto my-3">';
 
-    <?php
-    $index = 0;
-    foreach ($products as $product) {
-        if ($index == 0 || $index % 3 == 0) {
-            echo '<div class="row">';
-        }
+            echo '<div class="card">';
 
-        // $imgUrl = '../assets/images/' . $product['productCategory'] . '/' . $product['productSku'] . '/' . $product['productThumb'];
-        $imgUrl = '../assets/models/' . $product['productSku'] . '/' . 'thumbnail.png';
-        echo ' <div class="col-sm">';
-        echo '<div class="card" style="width: 18rem;">';
-        echo '<div class="card-header">' . $product['productName'] . '</div>';
-        echo '<img class="card-img-top" src="' . $imgUrl . '" alt="Products">';
-        echo '<div class="card-body">';
-        echo '<div class="d-flex justify-content-between">';
-        /* if (Session::get('userRole') == 'customer') {
-            echo '<a href="#" class="card-link">Add to cart</a>';
-        } */
-        echo '<a href="../user/cart" class="card-link">Add to cart</a>';
-        echo '<a href="#" class="card-link">See more</a>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
+            echo '<div class="card-header bg-light">' . $product['productName'] . '</div>';
 
-        if ($index + 1 % 3 == 0 || $index == sizeof($products)) {
+            echo '<img class="card-img-top" src="' . $imgUrl . '" alt="Products">';
+
+            echo '<div class="card-body">';
+            if (Session::get('userRole') == 'customer') {
+                echo '<div class="d-flex justify-content-between">';
+                // echo '<a href="../user/cart" class="card-link">Add to cart</a>';
+
+                echo '<a href="' . "item/" . $product['productId'] . '" class="card-link">More</a>';
+                echo '<button onclick=showSuccess() class="btn btn-primary" >Add to cart</button>';
+                echo '</div>';
+            } else {
+                echo '<div class="d-flex float-right">';
+                echo '<a href="' . "item/" . $product['productId'] . '" class="card-link">More</a>';
+                echo '</div>';
+            }
+            // echo '<a href="../user/cart" class="card-link">Add to cart</a>';
+            echo '</div>';
+
+
+            echo '</div>';
             echo '</div>';
         }
+        ?>
+    </div>
 
-        $index++;
-    }
-    ?>
+    <script>
+        function showSuccess() {
+            alert('Add to cart successfully');
+        }
+    </script>
 </div>
 </div>

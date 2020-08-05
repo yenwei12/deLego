@@ -35,4 +35,10 @@ class ProductController extends Controller
         $this->model->select('figurine');
         $this->view->render('product/index');
     }
+
+    public function itemAction($id = 0)
+    {
+        $this->model->selectOne($id);
+        $this->view->render('product/item');
+    }
 }

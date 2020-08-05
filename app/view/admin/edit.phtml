@@ -5,7 +5,7 @@
     $product = Session::get('product');
     ?>
 
-    <form action="../admin/editproduct" method="post">
+    <form action="../editproduct" method="post">
         <div class="form-group">
             <label for="sku">Product SKU</label>
             <input required type="text" class="form-control" name="sku" id="sku" maxlength="11" value="<?php echo $product['productSKU'] ?>">

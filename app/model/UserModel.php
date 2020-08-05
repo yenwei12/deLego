@@ -24,6 +24,10 @@ class UserModel extends Model
 
     public function update()
     {
-        header('location: ../user?=status=updatesuccess');
+        header('location: ../user?status=updatesuccess');
+    }
+
+    public function submit() {
+        header('location: ../user?status=checkoutsuccess');
     }
 }

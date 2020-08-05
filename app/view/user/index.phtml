@@ -2,9 +2,31 @@
     <br>
 
     <?php
+    $s = false;
+
+    if (isset($_REQUEST['status'])) {
+        if ($_REQUEST['status'] == 'updatesuccess') {
+            $s = true;
+            echo '<div class="alert alert-success" role="alert">';
+            echo 'Profile updated successfully';
+            echo '</div>';
+        }
+    }
+
+    if (isset($_REQUEST['status'])) {
+        if ($_REQUEST['status'] == 'checkoutsuccess') {
+            $s = true;
+            echo '<div class="alert alert-success" role="alert">';
+            echo 'Purchased successfully';
+            echo '</div>';
+        }
+    }
+
+
     echo '<h1>Hello, ';
     echo Session::get('userFullName');
     echo '</h1>';
+
     ?>
     <br>
 
@@ -65,7 +87,6 @@
                 <select id="country" name="country" class="form-control">
                     <option value="malaysia">Malaysia</option>
                 </select>
-                <p><?php echo Session::get('userCountry') ?></p>
             </div>
         </div>
         <div class="form-row py-2">
@@ -96,7 +117,7 @@
                     <th scope="col">Placed on</th>
                     <th scope="col">Status</th>
                     <th scope="col">Total</th>
-                    <th scope="col">Details</th>
+                    <!-- <th scope="col">Details</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -109,7 +130,7 @@
                         echo '<td>' . $order['orderAt'] . '</td>';
                         echo '<td>' . ucfirst($order['orderStatus']) . '</td>';
                         echo '<td>' . 'RM ' . number_format($order['orderAmount'], 2) . '</td>';
-                        echo '<td>' . '<a href="#">View</a>' . '</td>';
+                        //echo '<td>' . '<a href="#">View</a>' . '</td>';
                         echo '</tr>';
                     }
                 } else {

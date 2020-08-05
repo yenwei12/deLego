@@ -1,0 +1,127 @@
+<?php
+$p = Session::get('product');
+?>
+<a href="../../../ar" target="_blank" class="btn btn-primary qr-btn">View in AR</a>
+<div class="img-fluid mx-auto d-block product-cover my-5" id="3d"></div>
+
+<div class="container">
+    <h1><?php echo $p['productName'] ?></h1>
+    <!-- <img class="img-fluid mx-auto d-block product-cover my-5" src="../../assets/models/<?php echo $p['productSKU'] ?>/thumbnail.png" alt=""> -->
+
+    <div class="row">
+        <div class="col text-center vr">
+            <i class="icon fas fa-dollar-sign"></i>
+            <h1><?php echo $p['productPrice'] ?></h1>
+            <p class="unit">Ringgit</p>
+        </div>
+        <div class="col text-center vr">
+            <i class="icon fas fa-hashtag"></i>
+            <h1><?php echo $p['numberOfPieces'] ?></h1>
+            <p class="unit">Pieces</p>
+        </div>
+        <div class="col text-center">
+            <i class="icon fas fa-weight"></i>
+            <h1><?php echo $p['productWeight'] ?></h1>
+            <p class="unit">Kg</p>
+        </div>
+    </div>
+    <br>
+    <p><?php echo $p['productLongDesc'] ?></p>
+    <?php if ($p['productStock'] > 0) : ?>
+        <!-- <h4><a class="float-right btn btn-primary btn-lg" href="../../../user/cart" >Add to cart</a></h4> -->
+        <h4><button onclick=showSuccess() class="float-right btn btn-primary btn-lg" >Add to cart</a></h4>
+    <?php else : ?>
+        <h4><a class="float-right btn btn-secondary btn-lg disabled" href="">Out of stock</a></h4>
+    <?php endif; ?>
+
+    <script>
+        function showSuccess() {
+            alert('Add to cart successfully');
+        }
+    </script>
+
+</div>
+
+<script type="application/javascript" src="../../js/three.js"> </script>
+<script type="application/javascript" src="../../js/OrbitControls.js"></script>
+<script type="application/javascript" src="../../js/GLTFLoader.js"></script>
+<!-- <script type="application/javascript" src="../../js/render.js"></script> -->
+<script>
+    let container, scene, camera, renderer, controls, model;
+    let modelUrl = "../../assets/models/<?php echo $p['productSKU'] ?>/scene.gltf";
+
+    console.log(modelUrl);
+
+    function init() {
+        // container = document.createElement("div");
+        // document.body.appendChild(container);
+
+        container = document.getElementById("3d");
+
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xffffff);
+
+        camera = new THREE.PerspectiveCamera(
+            40,
+            window.innerWidth / window.innerHeight,
+            1,
+            1000
+        );
+        camera.rotation.y = (45 / 180) * Math.PI;
+        camera.position.x = 3;
+        camera.position.y = 4;
+        camera.position.z = 50;
+
+        let alight = new THREE.AmbientLight(0x404040, 3);
+        scene.add(alight);
+
+        let light = new THREE.PointLight(0xc4c4cc4, 10);
+        light.position.set(0, 300, 500);
+        scene.add(light);
+
+        let light2 = new THREE.PointLight(0xc4c4cc4, 10);
+        light.position.set(500, 100, 0);
+        scene.add(light2);
+
+        let light3 = new THREE.PointLight(0xc4c4cc4, 10);
+        light.position.set(0, 100, -500);
+        scene.add(light3);
+
+        let light4 = new THREE.PointLight(0xc4c4cc4, 10);
+        light.position.set(-5000, 300, 0);
+        scene.add(light4);
+
+        renderer = new THREE.WebGLRenderer({
+            alpha: true,
+            antialias: true
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.addEventListener("change", renderer);
+
+        let hlight = new THREE.AmbientLight(0x404040, 5);
+        scene.add(hlight);
+
+        let loader = new THREE.GLTFLoader();
+        loader.load(modelUrl, function(gltf) {
+            model = gltf.scene.children[0];
+            model.position.set(0, -9, 0);
+            model.scale.set(0.5, 0.5, 0.5);
+            scene.add(gltf.scene);
+            renderer.render(scene, camera);
+            animate();
+        });
+    }
+
+    function animate() {
+        requestAnimationFrame(animate);
+        /* model.rotation.x += 0.01;
+        model.rotation.y += 0.01;
+        model.rotation.z += 0.01; */
+        renderer.render(scene, camera);
+    }
+
+    init();
+</script>

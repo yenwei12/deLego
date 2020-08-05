@@ -10,6 +10,7 @@ class LoginModel extends Model
             userEmail,
             userFullName,
             userAddress,
+            userContactNo,
             userCity,
             userState,
             userPostcode,
